@@ -51,7 +51,7 @@ var auth = {
 
 
     validate: function (username, password) {
-        // spoofing the DB response for simplicity
+       
         var deferred = q.defer();
         userModel.find({ userName: username, password: password }, function (error, result) {
 
@@ -102,7 +102,9 @@ function genToken(user) {
 
 function expiresIn(numDays) {
     var dateObj = new Date();
-    return dateObj.setDate(dateObj.getDate() + numDays);
+    console.log(dateObj.getDate());
+    var newSetDate = dateObj.setDate(dateObj.getDate() + numDays);
+    return newSetDate;
 }
 
 
