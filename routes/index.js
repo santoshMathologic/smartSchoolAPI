@@ -25,6 +25,7 @@ var auth = require('./auth.js');
 var role = require('./role.js');
 var plans = require('./userPlan.js');
 var user = require('./user.js');
+var classApi = require('./classTable.js');
 
 
 
@@ -98,6 +99,14 @@ router.post('/api/v1/role', role.createRole);
 router.get('/api/admin/users', user.getUsers);
 router.put('/api/admin/user/', user.updateUser);
 router.put('/api/admin/user/:id', user.deleteUser);
+
+
+
+// class Api
+router.post('/api/class/createClass', classApi.createClass);
+router.get('/api/class/classes', classApi.getClasses);
+router.put('/api/class/Updateclass/', classApi.updateClass);
+router.put('/api/class/deleteClass/:id', classApi.deleteClass);
 
 
 

@@ -21,6 +21,7 @@
     "mongodb": "^2.1.19",
     "mongoose": "^4.4.19",
     "mongoose-deep-populate": "^3.0.0",
+    "mongoose-double": "0.0.1",
     "mongoose-query-paginate": "^1.0.1",
     "morgan": "~1.6.1",
     "multer": "^1.1.0",
