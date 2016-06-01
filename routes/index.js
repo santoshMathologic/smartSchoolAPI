@@ -103,10 +103,10 @@ router.put('/api/admin/user/:id', user.deleteUser);
 
 
 // class Api
-router.post('/api/class/createClass', classApi.createClass);
-router.get('/api/class/classes', classApi.getClasses);
-router.put('/api/class/Updateclass/', classApi.updateClass);
-router.put('/api/class/deleteClass/:id', classApi.deleteClass);
+router.post('/api/v1/class/createClass', classApi.createClass);
+router.get('/api/v1/class/classes', classApi.getClasses);
+router.put('/api/v1/class/Updateclass/', classApi.updateClass);
+router.put('/api/v1/class/deleteClass/:id', classApi.deleteClass);
 
 
 
