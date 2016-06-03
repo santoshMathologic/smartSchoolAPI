@@ -81,14 +81,22 @@ router.get('/api/trainLists', trainList.getTrainList);
 
 
 
+
 /// routes for TrainStations
 
 //router.get('/api/v1/trainStation/:trainNo', trainStation.findTrain);
 router.get('/api/v1/trainStation', trainStation.findTrain);
+router.get('/api/v1/trainStations', trainStation.getTrainStations);
 
 // routes for login
 router.post('/login',auth.login);
+
+
+
+// routes for Role
+
 router.post('/api/v1/role', role.createRole);
+router.get('/api/v1/roles', role.findSelectedColumn);
 
 
 
@@ -96,9 +104,11 @@ router.post('/api/v1/role', role.createRole);
  * Routes that can be accessed only by authenticated & authorized users
  */
 
-router.get('/api/admin/users', user.getUsers);
-router.put('/api/admin/user/', user.updateUser);
-router.put('/api/admin/user/:id', user.deleteUser);
+router.get('/api/v1/admin/users', user.getUsers);
+router.put('/api/v1/admin/user/', user.updateUser);
+router.put('/api/v1/admin/user/:id', user.deleteUser);
+router.post("/api/v1/admin/user/create",user.createUser);
+
 
 
 

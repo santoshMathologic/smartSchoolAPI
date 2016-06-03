@@ -8,5 +8,7 @@ var userSchema = new mongoose.Schema({
     email: String,
     roleCode: {type:String, ref:'role', default:'Planner'},
     markDelete:{type:Boolean,default:false},
+    userActive:{type:Boolean,default:false},
+    mobileNo :{type:Number},
     createdTime: {type:Date , default:Date.now}})
 module.exports = mongoose.model('user', userSchema);
