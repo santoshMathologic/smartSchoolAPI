@@ -16,13 +16,16 @@ var users = {
       email: req.body.email,
       roleCode: req.body.roleCode.roleCode,
       mobileNo: req.body.mobileNo,
-      userActive :req.body.userActive
+      userActive: req.body.userActive
     }
-   user.create(userObject, function (err, result) {
+    user.create(userObject, function (err, result) {
       if (err) return err;
       else {
-        res.json(result);
-        console.log(result);
+        res.status(201);
+        res.json({
+          "status": 200,
+          "message": "User created Successfully"
+        })
       }
     })
 
