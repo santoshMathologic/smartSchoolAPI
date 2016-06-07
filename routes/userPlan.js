@@ -144,24 +144,28 @@ var plans = {
     // santosh Method for API 
 
     getPlans: function (req, res) {
-        var _pageNumber = 1,
-            _pageSize = 10;
+        var options = {
+            perPage: parseInt(req.query.limit) || 10,
+            page: parseInt(req.query.page) || 1,
+            sortBy: req.query.sortBy || 'planName',
+        };
 
+        var sortBy = options.sortBy;
         planModel.find({}, null, {
             sort: {
-                planName: 1
+                sortBy: 1
             }
-        }).skip(_pageNumber > 0 ? ((_pageNumber - 1) * _pageSize) : 0).limit(_pageSize).exec(function (err, docs) {
+        }).skip(options.page > 0 ? ((options.page - 1) * options.perPage) : 0).limit(options.perPage).exec(function (err, docs) {
             if (err)
                 res.json(err);
             else
                 res.json({
                     "TotalCount": docs.length,
-                    "result": docs
+                    "results": docs
                 });
         });
 
-    }
+    },
 
 
 

@@ -65,7 +65,7 @@ router.post('/api/copyPlan',plans.copyPlan);
  *  Routes for Plans By santosh 
  * 
  */
-router.get('/api/plans/getPlans',plans.getPlans);
+router.get('/api/v1/plans/getPlans',plans.getPlans);
 
 
 router.get('/api/newUploads', newUpload.getAllUploads);
