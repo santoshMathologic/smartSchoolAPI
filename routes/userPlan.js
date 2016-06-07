@@ -49,25 +49,25 @@ var plans = {
     },
 
     getOnePlan: function (req, res) {
-          var options = {
+        var options = {
             perPage: parseInt(req.query.limit) || 10,
             page: parseInt(req.query.page) || 1,
             order: req.query.order || 'planName'
-            
+
         };
         var query;
         queryResolver.resolveQuery(req.query, planModel, options).then(function (response) {
             res.json(response);
         });
-        
-      
+
+
 
     },
 
     createCoPlan: function (req, res) {
         var id = req.params.id;
         if (req.body.isUnderReview) {
-            planModel.findByIdAndUpdate(id, {isUnderReview: req.body.isUnderReview}, function (err, result) {
+            planModel.findByIdAndUpdate(id, { isUnderReview: req.body.isUnderReview }, function (err, result) {
                 if (err) {
                     console.log("Error" + err);
                 }
@@ -85,15 +85,15 @@ var plans = {
                 }
                 else {
                     res.json(result);
-                   
-                   /* res.json({
-                        "status": 201,
-                        "message": "Updated Successfully",
-                        "data" :result 
-                    });
-                    */
-                    
-                    
+
+                    /* res.json({
+                         "status": 201,
+                         "message": "Updated Successfully",
+                         "data" :result 
+                     });
+                     */
+
+
                 }
             })
         }
@@ -114,17 +114,17 @@ var plans = {
 
     updateReviewer: function (req, res) {
         var id = req.params.id;
-        
-            planModel.findByIdAndUpdate(id,{reviewer: req.body.reviewer,isUnderReview: req.body.isUnderReview }, function (err, result) {
-                if (err) {
-                    console.log("Error" + err);
-                }
-                else {
-                    res.json(result);
-                }
-            })
-   
-      },
+
+        planModel.findByIdAndUpdate(id, { reviewer: req.body.reviewer, isUnderReview: req.body.isUnderReview }, function (err, result) {
+            if (err) {
+                console.log("Error" + err);
+            }
+            else {
+                res.json(result);
+            }
+        })
+
+    },
 
     deletePlan: function (req, res) {
         var id = req.params.id;
@@ -138,7 +138,34 @@ var plans = {
             console.log("Error in Deleting " + error);
         })
 
+    },
+
+
+    // santosh Method for API 
+
+    getPlans: function (req, res) {
+        var _pageNumber = 1,
+            _pageSize = 10;
+
+        planModel.find({}, null, {
+            sort: {
+                planName: 1
+            }
+        }).skip(_pageNumber > 0 ? ((_pageNumber - 1) * _pageSize) : 0).limit(_pageSize).exec(function (err, docs) {
+            if (err)
+                res.json(err);
+            else
+                res.json({
+                    "TotalCount": docs.length,
+                    "result": docs
+                });
+        });
+
     }
+
+
+
+
 };
 
 

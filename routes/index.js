@@ -61,6 +61,11 @@ router.put('/api/plan/updateReviewer/:id', plans.updateReviewer);
 router.put('/api/plan/deletePlan/:id', plans.deletePlan);
 router.post('/api/copyPlan',plans.copyPlan);
 
+/**
+ *  Routes for Plans By santosh 
+ * 
+ */
+router.get('/api/plans/getPlans',plans.getPlans);
 
 
 router.get('/api/newUploads', newUpload.getAllUploads);
@@ -87,6 +92,7 @@ router.get('/api/trainLists', trainList.getTrainList);
 //router.get('/api/v1/trainStation/:trainNo', trainStation.findTrain);
 router.get('/api/v1/trainStation', trainStation.findTrain);
 router.get('/api/v1/trainStations', trainStation.getTrainStations);
+router.get('/api/v1/trainStations/getStations', trainStation.getTrainStation);
 
 // routes for login
 router.post('/login',auth.login);

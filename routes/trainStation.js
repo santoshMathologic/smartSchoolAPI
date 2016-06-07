@@ -16,7 +16,7 @@ var trainStations = {
         return deferred.promise;
     },
 
-  findTrainByNumber: function (req, res) {
+    findTrainByNumber: function (req, res) {
         trainstation.find({ 'trainNo': req.params.trainNo }, function (error, result) {
             if (error) return error;
             else if (result.length == 0) {
@@ -32,17 +32,17 @@ var trainStations = {
     },
 
 
-  findTrain: function (req,res) {
+    findTrain: function (req, res) {
         var options = {
             perPage: parseInt(req.query.limit) || 10,
             page: parseInt(req.query.page) || 1
-       };
+        };
         var query;
-        queryResolver.resolveQuery(req.query, trainstation, options).then(function(response) {
+        queryResolver.resolveQuery(req.query, trainstation, options).then(function (response) {
             res.json(response);
         });
     },
-  
+
 
     deleteTrainStations: function (data) {
         var deferred = q.defer();
@@ -52,7 +52,7 @@ var trainStations = {
         });
         return deferred.promise;
     },
-     getTrainStations: function (req, res) {
+    getTrainStations: function (req, res) {
 
         var options = {
             perPage: parseInt(req.query.limit) || 10,
@@ -61,17 +61,40 @@ var trainStations = {
             trainup: req.query.trainup,
             traindown: req.query.traindown
         };
-        
-        trainstation.find({trainNo: { $in: [options.trainup, options.traindown] } }, function (err,post) {
-            
+
+        trainstation.find({ trainNo: { $in: [options.trainup, options.traindown] } }, function (err, post) {
+
             if (err) console.log(err);
-             res.json(post);
+            res.json(post);
 
         });
 
-        
+
 
     },
+
+    getTrainStation: function (req, res) {
+        var options = {
+            perPage: parseInt(req.query.limit) || 10,
+            page: parseInt(req.query.page) || 1,
+            sortBy: req.query.sortBy || 'stopNo',
+        };
+
+        var sortBy = options.sortBy;
+        trainstation.find({}, null, {
+            sort: {
+                sortBy: 1
+            }
+        }).skip(options.page > 0 ? ((options.page - 1) * options.perPage) : 0).limit(options.perPage).exec(function (err, docs) {
+            if (err)
+                res.json(err);
+            else
+                res.json({
+                    "TotalCount": docs.length,
+                    "results": docs
+                });
+        });
+    }
 
 
 
