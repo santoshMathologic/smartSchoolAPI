@@ -114,6 +114,7 @@ router.get('/api/v1/admin/users', user.getUsers);
 router.put('/api/v1/admin/user/', user.updateUser);
 router.put('/api/v1/admin/user/:id', user.deleteUser);
 router.post("/api/v1/admin/user/create",user.createUser);
+router.get("/api/v1/admin/user/findUser",user.findUser);
 
 
 

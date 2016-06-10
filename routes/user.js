@@ -68,7 +68,25 @@ var users = {
     }, function (error) {
       console.log("error" + error);
     })
+  },
+
+  findUser: function (req, res) {
+
+     var username  = req.query.username;
+     var pass = req.query.password;
+
+ //{ $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } }
+
+//user.find({$and:[{userName:{$eq:username}},{password:{$eq:pass}}]}, function (err, result) {
+    user.find({userName:{$eq:username}},{password:{$eq:pass}}, function (err, result) {
+      if (err) return err;
+      else {
+        res.json(result);
+      }
+    })
+
   }
+
 };
 
 
